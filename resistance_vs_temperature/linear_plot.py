@@ -9,14 +9,15 @@ Plots linear fits
 
 import numpy as np
 from general import plots
+from resistance_vs_temperature import resistance_vs_temperature_reader
 
 
-def find_linear_regime(temperature,resistance):
+def find_linear_regime(temperature, resistance):
     #take only linear regime of resistance vs. temperature data for linear fit
     #T>35K. Reference: Joey's heating paper
-    valuesforfit = np.array([(temperature[i],resistance[i]) for i in range(temperature.size) if temperature[i]>35])
-    newtemperature=valuesforfit[0]
-    newresistance=valuesforfit[1]
+    valuesforfit = np.array([(temperature[i], resistance[i]) for i in range(temperature.size) if temperature[i] > 35])
+    newtemperature=valuesforfit[:,0]
+    newresistance=valuesforfit[:,1]
     return newtemperature,newresistance
 
 
@@ -25,3 +26,5 @@ def plot_resistance_vs_temperature(ax,temperature,resistance,m,b,equation):
     linear_plot=plots.plot_linear_with_fit(ax, temperature, resistance, m, b, equation, "R vs. T", "Temperature (K)",
                                           "Resistance (Ω)", np.amin(temperature), np.amax(temperature))
     return linear_plot
+
+

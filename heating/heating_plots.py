@@ -8,6 +8,7 @@ Creates heating map
 """
 
 from general import plots
+import math
 
 
 def plot_heating_map(ax, dtemperature,plotlabel,header,min_val,max_val):
