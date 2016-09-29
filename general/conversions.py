@@ -31,3 +31,6 @@ def current_to_voltage(current, resistance):
 def rms_to_peak(rms):
     #converts lock-in square wave to true signal
     return rms * 2.22
+
+def wavelength_to_wavenumber(wavelength):
+    return (1/785-1/wavelength)*10**7
