@@ -28,6 +28,7 @@ import numpy as np
 #       """
 #http://astropython.blogspot.com/2012/02/computing-chi-squared-and-reduced-chi.html
 
+
 def redchisqg(ydata,ymod,deg=2,sd=None):
     if sd==None:
         chisq=np.sum((ydata-ymod)**2)

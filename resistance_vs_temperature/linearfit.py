@@ -1,19 +1,26 @@
-import numpy as np
-from scipy.optimize import curve_fit
-from general.goodnessoffit import redchisqg
-from general.curvefitfunctions import functions import linear
-import heating.conversions as conv
+# -*- coding: utf-8 -*-
+"""
+Created on 2016-09-28
 
-def rtlinearfit(t,r):
-    #I only want to fit the linear regime, where T>40 K -Joey's heating paper
-    valuesforfit = np.array([(t[i],r[i]) for i in range(t.size) if t[i]>35])
-    p, pcov = curve_fit(linear,valuesforfit[:,0],valuesforfit[:,1])
-    #p is the parameters, m and b, and pcov is an array containing error info
-    error = np.sqrt(np.diag(pcov))
-    #the square root of the diags give standard error for fit paramters
-    drdt = p[0] #bookkeeping
-    drdterror = error[0] #bookkeeping
-    redchi = redchisqg(valuesforfit[:,1],linear(valuesforfit[:,0],drdt,p[1]),deg=2,sd=None)
-    equation = 'y = ({:.4f}±{:.4f})x + ({:.4f}±{:.4f}) \nChi Square: {:.4f}'.format(
-        drdt, drdterror, p[1], error[1], redchi)
-    return drdt,p[1],equation
+Allows plotting for linear fits
+
+@author: cie1
+"""
+
+import numpy as np
+from general import plot
+
+
+def find_linear_regime(temperature,resistance):
+    #take only linear regime of resistance vs. temperature data for linear fit
+    #T>35K. Reference: Joey's heating paper
+    valuesforfit = np.array([(temperature[i],resistance[i]) for i in range(temperature.size) if temperature[i]>35])
+    newtemperature=valuesforfit[0]
+    newresistance=valuesforfit[1]
+    return newtemperature,newresistance
+
+
+def plot_resistance_vs_temperature(ax,temperature,resistance,m,b,equation):
+    #Input the full resistance vs temperature values
+    linear_plot=plot.plot_linear_with_fit(ax, temperature, resistance, m, b, equation, "R vs. T", "Temperature (K)", "Resistance (Ω)", np.amin(temperature), np.amax(temperature))
+    return linear_plot
