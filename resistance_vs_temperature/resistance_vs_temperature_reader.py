@@ -11,6 +11,6 @@ def read(filepath):
     with open(filepath) as inputfile:
         rtdata = np.loadtxt(inputfile, delimiter='\t')
         rtdata = rtdata[np.isfinite(rtdata).all(axis=1)]
-    t = rtdata[:, 0]  # sets first column as x val array
-    r = rtdata[:, 1]  # sets second column as y val array
-    return t, r
+    temperature = rtdata[:, 0]
+    resistance = rtdata[:, 1]
+    return temperature, resistance

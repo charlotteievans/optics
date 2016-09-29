@@ -12,7 +12,8 @@ import numpy as np
 def dcurrent_to_dtemperature(dcurrent, drdt, resistance, bias):
     # convert from lock-in x to ∆T. 2.22 is from square wave
     #Reference: Joey's heating paper
-    return -resistance * resistance * dcurrent * 2.22 / (drdt * bias)
+    return -resistance * resistance * dcurrent * 2.22/ (drdt * bias)
+#change this!
 
 def degrees_to_radians(degrees):
     # converts to radians
@@ -26,3 +27,7 @@ def power_to_intensity(power):
 def current_to_voltage(current, resistance):
     #Ohm's law
     return current * resistance
+
+def rms_to_peak(rms):
+    #converts lock-in square wave to true signal
+    return rms * 2.22
