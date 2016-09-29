@@ -5,12 +5,11 @@ Created on 2016-09-28
 @author: cie1
 """
 
-import os
-
+from os import path
 
 
 def listdir(directory):
-	return [os.path.join(directory, filename) for filename in os.listdir(directory)]
+	return [path.join(directory, filename) for filename in os.listdir(directory)]
 
 
 def return_only_text_files(datafiles):

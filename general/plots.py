@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 from os import path
 
 
-def plot_linear_with_fit(ax=None,x,y,m,b,equation,plot_label,x_label,y_label,x_min,x_max):
+def plot_linear_with_fit(ax,x,y,m,b,equation,plot_label,x_label,y_label,x_min,x_max):
     if ax is None:
         ax = plt.gca()
     ax.plot(x,y,label=plot_label)
@@ -25,8 +25,10 @@ def plot_linear_with_fit(ax=None,x,y,m,b,equation,plot_label,x_label,y_label,x_m
     return linear_plot
     #TODO this needs to be more robust and actually return something...
 
-def plot_color_map(ax, array, plot_title, colormap, x_label, y_label, clb_label, min_val, max_val):
-    im = ax.imshow(array.T, cmap=colormap, interpolation='none', vmin=min_val, vmax=max_val)
+def plot_color_map(ax, data, plot_title, colormap, x_label, y_label, clb_label, min_val, max_val):
+    if ax is None:
+        ax = plt.gca()
+    im = ax.imshow(data.T, cmap=colormap, interpolation='none', vmin=min_val, vmax=max_val)
     ax.set_title(plot_title)
     ax.xlabel(x_label)
     ax.ylabel(y_label)
