@@ -60,9 +60,3 @@ def plot_all_heating_maps(rtfilepath, datapath, figurepath, substrate_temperatur
             pass
     return errors, zerobias
 
-# rtfilepath='C:\\DOCUMENTS\\Projects\\Gratings\\Data\\2016\\Sept 21\\rvst.txt'
-# datapath='C:\\DOCUMENTS\\Projects\\Gratings\\Data\\2016\\Sept 21\\Gphoto'
-# figurepath='C:\\DOCUMENTS\\Projects\\Test Again'
-# substrate_temperature=40.5
-# max_value_percent=1
-# plot_all_heating_maps(rtfilepath, datapath, figurepath, substrate_temperature, max_value_percent)
