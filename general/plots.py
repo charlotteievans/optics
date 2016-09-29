@@ -37,10 +37,10 @@ def plot_color_map(ax, data, plot_title, colormap, x_label, y_label, clb_label, 
     im.set_clim(min_val,max_val)
     #TODO figure out how to return this
 
-def save_figure(plotlabel,figurepath):
-    figbasename = plotlabel + '.png'
+def save_figure(plotlabel,figurepath, format_type):
+    figbasename = plotlabel + '.' + format_type
     figfilepath = path.join(figurepath,figbasename)
-    plt.savefig(figfilepath, format='png')
+    plt.savefig(figfilepath, format = format_type)
     #TODO unfuck this so it's not always stuck as png
 
 

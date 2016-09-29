@@ -19,7 +19,8 @@ import numpy as np
 from general import plots
 from general import fileutil
 
-def plot_single_heating_map(rtfilepath, gphotofilepath, figurepath, substrate_temperature, max_value_percent):
+def plot_single_heating_map(rtfilepath, gphotofilepath, figurepath, substrate_temperature, max_value_percent,
+                            format_type):
     os.makedirs(figurepath, exist_ok=True)
     plotlabel = path.splitext(path.basename(gphotofilepath))[0]
     header, arrays = gphoto_reader.read(gphotofilepath)
@@ -30,10 +31,10 @@ def plot_single_heating_map(rtfilepath, gphotofilepath, figurepath, substrate_te
     min_val = np.amin(dtemperature)
     max_val = np.sort(dtemperature, axis=None)[int(np.rint(max_value_percent * (np.size(dtemperature)-1)))]
     heating_plots.plot_heating_map(ax, dtemperature, plotlabel, header, min_val, max_val)
-    plots.save_figure(plotlabel, figurepath)
+    plots.save_figure(plotlabel, figurepath, format_type)
 
 
-def plot_all_heating_maps(rtfilepath, datapath, figurepath, substrate_temperature, max_value_percent):
+def plot_all_heating_maps(rtfilepath, datapath, figurepath, substrate_temperature, max_value_percent, format_type):
     drdt, resistance = resistance_and_drdt.get_drdt_and_resistance(rtfilepath, substrate_temperature)
     errors=[]
     zerobias=[]
@@ -50,7 +51,7 @@ def plot_all_heating_maps(rtfilepath, datapath, figurepath, substrate_temperatur
             min_val = np.amin(dtemperature)
             max_val = np.sort(dtemperature, axis=None)[int(np.rint(max_value_percent * (np.size(dtemperature)-1)))]
             heating_plots.plot_heating_map(ax, dtemperature, plotlabel, header, min_val, max_val)
-            plots.save_figure(plotlabel, figurepath)
+            plots.save_figure(plotlabel, figurepath, format_type)
             plt.close("all")
             if header['Applied Voltage'] == 0:
                 zerobias.append(plotlabel)
