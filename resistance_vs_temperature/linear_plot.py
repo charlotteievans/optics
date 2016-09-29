@@ -2,13 +2,13 @@
 """
 Created on 2016-09-28
 
-Allows plotting for linear fits
+Plots linear fits
 
 @author: cie1
 """
 
 import numpy as np
-from general import plot
+from general import plots
 
 
 def find_linear_regime(temperature,resistance):
@@ -22,5 +22,6 @@ def find_linear_regime(temperature,resistance):
 
 def plot_resistance_vs_temperature(ax,temperature,resistance,m,b,equation):
     #Input the full resistance vs temperature values
-    linear_plot=plot.plot_linear_with_fit(ax, temperature, resistance, m, b, equation, "R vs. T", "Temperature (K)", "Resistance (Ω)", np.amin(temperature), np.amax(temperature))
+    linear_plot=plots.plot_linear_with_fit(ax, temperature, resistance, m, b, equation, "R vs. T", "Temperature (K)",
+                                          "Resistance (Ω)", np.amin(temperature), np.amax(temperature))
     return linear_plot

@@ -11,4 +11,4 @@ def dcurrent_to_dtemperature(dcurrent, drdt, resistance, bias):
     # convert from lock-in x to ∆T. 2.22 is from square wave
     #Reference: Joey's heating paper
     return -resistance * resistance * dcurrent * 2.22/ (drdt * bias)
-#change this!
+#TODO change this so 2.22 is out

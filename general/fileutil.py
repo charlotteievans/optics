@@ -6,7 +6,7 @@ Created on 2016-09-28
 """
 
 import os
-from os import path
+
 
 
 def listdir(directory):
