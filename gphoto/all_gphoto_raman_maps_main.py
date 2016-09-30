@@ -3,8 +3,8 @@ from gphoto import gphoto_raman_top
 # CHANGE THESE VALUES
 
 
-datapath='C:\\DOCUMENTS\\Projects\\Gratings\\Data\\2016\\Sept 21\\Gphoto'
-figurepath='C:\\DOCUMENTS\\Projects\\Testing All the Raman'
+datadirectory= 'C:\\DOCUMENTS\\Projects\\Gratings\\Data\\2016\\Sept 21\\Gphoto'
+figuredirectory= 'C:\\DOCUMENTS\\Projects\\Testing All the Raman'
 format_type='png' #Supported formats: emf, eps, pdf, png, ps, raw, rgba, svg, svgz
 min_value=0
 max_value=1
@@ -19,6 +19,6 @@ supported_formats=['emf','eps','pdf','png','ps','raw','rgba','svg','svgz']
 if format_type not in supported_formats:
     print('Format type must be supported. Use ' + str(supported_formats))
 else:
-    errors=gphoto_raman_top.plot_all_gphoto_raman_maps(datapath, figurepath, format_type, min_value, max_value,
-                                                  explicit_value_boolean)
+    errors=gphoto_raman_top.plot_all_gphoto_raman_maps(datadirectory, figuredirectory, format_type, min_value, max_value,
+                                                       explicit_value_boolean)
     print('Errors: ' + str(errors))

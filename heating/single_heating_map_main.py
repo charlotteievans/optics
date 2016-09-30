@@ -13,7 +13,7 @@ from heating import heating_top
 
 rtfilepath='C:\\DOCUMENTS\\Projects\\Gratings\\Data\\2016\\Sept 21\\rvst.txt'
 gphotofilepath='C:\\DOCUMENTS\\Projects\\Gratings\\Data\\2016\\Sept 21\\Gphoto\\2_1_1.txt'
-figurepath='C:\\DOCUMENTS\\Projects\\Test'
+figuredirectory='C:\\DOCUMENTS\\Projects\\Test'
 substrate_temperature=40.5
 format_type='png' #Supported formats: emf, eps, pdf, png, ps, raw, rgba, svg, svgz
 min_value=0
@@ -29,5 +29,5 @@ supported_formats=['emf','eps','pdf','png','ps','raw','rgba','svg','svgz']
 if format_type not in supported_formats:
     print('Format type must be supported. Use ' + str(supported_formats))
 else:
-    heating_top.plot_single_heating_map(rtfilepath, gphotofilepath, figurepath, substrate_temperature,
+    heating_top.plot_single_heating_map(rtfilepath, gphotofilepath, figuredirectory, substrate_temperature,
                                         format_type, min_value, max_value, explicit_value_boolean)

@@ -11,8 +11,8 @@ from heating import heating_top
 #CHANGE THESE VALUES
 
 rtfilepath='C:\\DOCUMENTS\\Projects\\Gratings\\Data\\2016\\Sept 21\\rvst.txt'
-datapath='C:\\DOCUMENTS\\Projects\\Gratings\\Data\\2016\\Sept 21\\Gphoto'
-figurepath='C:\\DOCUMENTS\\Projects\\Test Again'
+datadirectory='C:\\DOCUMENTS\\Projects\\Gratings\\Data\\2016\\Sept 21\\Gphoto'
+figuredirectory='C:\\DOCUMENTS\\Projects\\Test Again'
 substrate_temperature=40.5
 format_type='png' #Supported formats: emf, eps, pdf, png, ps, raw, rgba, svg, svgz
 max_value_percent=1
@@ -29,7 +29,8 @@ supported_formats=['emf','eps','pdf','png','ps','raw','rgba','svg','svgz']
 if format_type not in supported_formats:
     print('Format type must be supported. Use ' + str(supported_formats))
 else:
-    errors, zerobias = heating_top.plot_all_heating_maps(rtfilepath, datapath, figurepath, substrate_temperature,
-                                                   format_type, min_value, max_value, explicit_value_boolean)
+    errors, zerobias = heating_top.plot_all_heating_maps(rtfilepath, datadirectory, figuredirectory,
+                                                         substrate_temperature, format_type, min_value, max_value,
+                                                         explicit_value_boolean)
     print('Errors: ' + str(errors))
     print('Zero bias: ' + str(zerobias))

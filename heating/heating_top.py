@@ -19,9 +19,9 @@ import numpy as np
 from general import plots
 from general import fileutil
 
-def plot_single_heating_map(rtfilepath, gphotofilepath, figurepath, substrate_temperature, format_type, min_value,
+def plot_single_heating_map(rtfilepath, gphotofilepath, figuredirectory, substrate_temperature, format_type, min_value,
                             max_value, explicit_value_boolean):
-    os.makedirs(figurepath, exist_ok=True)
+    os.makedirs(figuredirectory, exist_ok=True)
     plotlabel = path.splitext(path.basename(gphotofilepath))[0]
     header, arrays = gphoto_reader.read(gphotofilepath)
     drdt, resistance = resistance_and_drdt.get_drdt_and_resistance(rtfilepath, substrate_temperature)
@@ -37,12 +37,12 @@ def plot_single_heating_map(rtfilepath, gphotofilepath, figurepath, substrate_te
             return
         min_value = np.sort(dtemperature, axis=None)[int(np.rint(min_value * (np.size(dtemperature) - 1)))]
         max_value=np.sort(dtemperature, axis=None)[int(np.rint(max_value * (np.size(dtemperature) - 1)))]
-    heating_plots.plot_heating_map(ax, dtemperature, plotlabel, header, min_value, max_value)
-    plots.save_figure(plotlabel, figurepath, format_type)
+    heating_plots.plot_heating_map(ax, dtemperature.T, plotlabel, header, min_value, max_value)
+    plots.save_figure(plotlabel, figuredirectory, format_type)
     plt.close('all')
 
 
-def plot_all_heating_maps(rtfilepath, datapath, figurepath, substrate_temperature, format_type, min_value, max_value,
+def plot_all_heating_maps(rtfilepath, datadirectory, figuredirectory, substrate_temperature, format_type, min_value, max_value,
                           explicit_value_boolean):
     if min_value>max_value:
         print('Max value must be greater than min value')
@@ -54,8 +54,8 @@ def plot_all_heating_maps(rtfilepath, datapath, figurepath, substrate_temperatur
     drdt, resistance = resistance_and_drdt.get_drdt_and_resistance(rtfilepath, substrate_temperature)
     errors=[]
     zerobias=[]
-    os.makedirs(figurepath, exist_ok=True)
-    datafiles=fileutil.return_only_text_no_raman(fileutil.listdir(datapath))
+    os.makedirs(figuredirectory, exist_ok=True)
+    datafiles=fileutil.return_only_text_no_raman(fileutil.listdir(datadirectory))
     for datafile in datafiles:
         plotlabel = path.splitext(path.basename(datafile))[0]
         try:
@@ -64,11 +64,11 @@ def plot_all_heating_maps(rtfilepath, datapath, figurepath, substrate_temperatur
             dtemperature = heating_conversions.dcurrent_to_dtemperature(dcurrent, drdt, resistance,
                                                                         header["Applied Voltage"])
             fig, ax = plt.subplots()
-            if max_value<=1: #TODO why is this janky
+            if max_value<=1: #TODO this doesn't work
                 min_value=np.sort(dtemperature, axis=None)[int(np.rint(min_value * (np.size(dtemperature)-1)))]
                 max_value = np.sort(dtemperature, axis=None)[int(np.rint(max_value * (np.size(dtemperature)-1)))]
-            heating_plots.plot_heating_map(ax, dtemperature, plotlabel, header, min_value, max_value)
-            plots.save_figure(plotlabel, figurepath, format_type)
+            heating_plots.plot_heating_map(ax, dtemperature.T, plotlabel, header, min_value, max_value)
+            plots.save_figure(plotlabel, figuredirectory, format_type)
             plt.close("all")
             if header['Applied Voltage'] == 0:
                 zerobias.append(plotlabel)

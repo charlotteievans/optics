@@ -33,3 +33,7 @@ def rms_to_peak(rms):
 
 def wavelength_to_wavenumber(wavelength):
     return (1/785-1/wavelength)*10**7
+
+
+def find_nearest(array,value):
+    return (np.abs(array-value)).argmin()

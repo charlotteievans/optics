@@ -11,7 +11,7 @@ from general import plots
 import math
 
 
-def plot_raman_map(ax, raman_array, plotlabel, header, min_val, max_val):
+def plot_raman_map(ax, raman_array, plotlabel, header, min_value, max_value):
     plot_title = plotlabel+' Raman' + '\nPolarization: ' + str(math.floor(header['Polarization'])) + ' degrees'
-    plots.plot_color_map(ax, raman_array, plot_title, 'coolwarm', 'x pixel', 'y pixel', 'counts', min_val, max_val)
+    plots.plot_color_map(ax, raman_array, plot_title, 'coolwarm', 'x pixel', 'y pixel', 'counts', min_value, max_value)
     # TODO return something here

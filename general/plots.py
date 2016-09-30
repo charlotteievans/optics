@@ -29,7 +29,7 @@ def plot_linear_with_fit(ax,x,y,m,b,equation,plot_label,x_label,y_label,x_min,x_
 def plot_color_map(ax, data, plot_title, colormap, x_label, y_label, clb_label, min_val, max_val):
     if ax is None:
         ax = plt.gca()
-    im = ax.imshow(data.T, cmap=colormap, interpolation='none', vmin=min_val, vmax=max_val)
+    im = ax.imshow(data, cmap=colormap, interpolation='none', vmin=min_val, vmax=max_val)
     ax.set_title(plot_title)
     plt.xlabel(x_label)
     plt.ylabel(y_label)
