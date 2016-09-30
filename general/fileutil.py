@@ -30,3 +30,13 @@ def unzip_file(datafile, destination):
         z.extractall(destination)
 
 
+def match_files(shortername_listdir,longername_listdir,key_word): #TODO this is janky
+    dummy_list=[]
+    sorted_list=[]
+    for item in shortername_listdir:
+        dummy_list.append(path.splitext(path.basename(item))[0]+key_word)
+    for item in dummy_list:
+        for n in longername_listdir:
+            if item in n:
+                sorted_list.append(n)
+    return sorted_list

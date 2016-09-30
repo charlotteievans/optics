@@ -40,8 +40,9 @@ def plot_all_ramanspectra_maps(datadirectory,gphotofiledirectory,figuredirectory
             return
     os.makedirs(figuredirectory, exist_ok=True)
     errors=[]
-    datafiles = fileutil.return_ramanspectra_files(fileutil.listdir(datadirectory))
+    datafiles_temp = fileutil.return_ramanspectra_files(fileutil.listdir(datadirectory))
     gphotofiles=fileutil.return_only_text_no_raman(fileutil.listdir(gphotofiledirectory))
+    datafiles=fileutil.match_files(gphotofiles,datafiles_temp,'_RamanSpectra')
     for datafile,gphotofile in zip(datafiles,gphotofiles):
         plotlabel=path.splitext(path.basename(datafile))[0]
         try:
@@ -58,4 +59,5 @@ def plot_all_ramanspectra_maps(datadirectory,gphotofiledirectory,figuredirectory
             errors.append(plotlabel)
             pass
     return errors
+
 
