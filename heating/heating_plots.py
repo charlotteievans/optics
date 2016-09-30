@@ -7,13 +7,13 @@ Creates heating map
 @author: cie1
 """
 
-from general import plots
+from general import plotting
 import math
 
 
 def plot_heating_map(ax, dtemperature,plotlabel,header,min_val,max_val):
     plot_title=plotlabel + '\nPolarization: ' + str(math.floor(header['Polarization'])) + ' degrees'
-    plots.plot_color_map(ax, dtemperature, plot_title, 'coolwarm', 'x pixel', 'y pixel', 'dT (K)', min_val, max_val)
+    plotting.plot_color_map(ax, dtemperature, plot_title, 'coolwarm', 'x pixel', 'y pixel', 'dT (K)', min_val, max_val)
     #TODO return something here
 
 

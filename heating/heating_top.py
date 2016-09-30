@@ -16,7 +16,7 @@ from general import conversions
 from heating import heating_plots
 import matplotlib.pylab as plt
 import numpy as np
-from general import plots
+from general import plotting
 from general import fileutil
 
 def plot_single_heating_map(rtfilepath, gphotofilepath, figuredirectory, substrate_temperature, format_type, min_value,
@@ -38,7 +38,7 @@ def plot_single_heating_map(rtfilepath, gphotofilepath, figuredirectory, substra
         min_value = np.sort(dtemperature, axis=None)[int(np.rint(min_value * (np.size(dtemperature) - 1)))]
         max_value=np.sort(dtemperature, axis=None)[int(np.rint(max_value * (np.size(dtemperature) - 1)))]
     heating_plots.plot_heating_map(ax, dtemperature.T, plotlabel, header, min_value, max_value)
-    plots.save_figure(plotlabel, figuredirectory, format_type)
+    plotting.save_figure(plotlabel, figuredirectory, format_type)
     plt.close('all')
 
 
@@ -68,7 +68,7 @@ def plot_all_heating_maps(rtfilepath, datadirectory, figuredirectory, substrate_
                 min_value=np.sort(dtemperature, axis=None)[int(np.rint(min_value * (np.size(dtemperature)-1)))]
                 max_value = np.sort(dtemperature, axis=None)[int(np.rint(max_value * (np.size(dtemperature)-1)))]
             heating_plots.plot_heating_map(ax, dtemperature.T, plotlabel, header, min_value, max_value)
-            plots.save_figure(plotlabel, figuredirectory, format_type)
+            plotting.save_figure(plotlabel, figuredirectory, format_type)
             plt.close("all")
             if header['Applied Voltage'] == 0:
                 zerobias.append(plotlabel)

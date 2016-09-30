@@ -36,6 +36,7 @@ def plot_color_map(ax, data, plot_title, colormap, x_label, y_label, clb_label, 
     clb = plt.colorbar(im, orientation='vertical')
     clb.set_label(clb_label, rotation=270, labelpad=20)
     im.set_clim(min_val,max_val)
+    return im
     #TODO figure out how to return this
     #TODO how to set labels
 

@@ -8,7 +8,7 @@ Plots linear fits
 """
 
 import numpy as np
-from general import plots
+from general import plotting
 from resistance_vs_temperature import resistance_vs_temperature_reader
 
 
@@ -23,7 +23,7 @@ def find_linear_regime(temperature, resistance):
 
 def plot_resistance_vs_temperature(ax,temperature,resistance,m,b,equation):
     #Input the full resistance vs temperature values
-    linear_plot=plots.plot_linear_with_fit(ax, temperature, resistance, m, b, equation, "R vs. T", "Temperature (K)",
+    linear_plot=plotting.plot_linear_with_fit(ax, temperature, resistance, m, b, equation, "R vs. T", "Temperature (K)",
                                           "Resistance (Ω)", np.amin(temperature), np.amax(temperature))
     return linear_plot
 

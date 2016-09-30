@@ -9,7 +9,7 @@ Top level programs used in main files
 
 from gphoto import gphoto_raman_plot
 from gphoto import gphoto_reader
-from general import plots
+from general import plotting
 import os
 import numpy as np
 from os import path
@@ -33,7 +33,7 @@ def plot_single_gphoto_raman_map(gphotofilepath, figuredirectory, format_type, m
         min_value = np.sort(raman_array, axis=None)[int(np.rint(min_value * (np.size(raman_array) - 1)))]
         max_value=np.sort(raman_array, axis=None)[int(np.rint(max_value * (np.size(raman_array) - 1)))]
     gphoto_raman_plot.plot_raman_map(ax, raman_array.T, plotlabel, header, min_value, max_value)
-    plots.save_figure(plotlabel, figuredirectory, format_type)
+    plotting.save_figure(plotlabel, figuredirectory, format_type)
     plt.close('all')
 
 
@@ -58,7 +58,7 @@ def plot_all_gphoto_raman_maps(datadirectory, figuredirectory, format_type, min_
                 min_value = np.sort(raman_array, axis=None)[int(np.rint(min_value * (np.size(raman_array) - 1)))]
                 max_value = np.sort(raman_array, axis=None)[int(np.rint(max_value * (np.size(raman_array) - 1)))]
             gphoto_raman_plot.plot_raman_map(ax, raman_array.T, plotlabel, header, min_value, max_value)
-            plots.save_figure(plotlabel, figuredirectory, format_type)
+            plotting.save_figure(plotlabel, figuredirectory, format_type)
             plt.close('all')
         except:
             errors.append(plotlabel)
