@@ -24,6 +24,7 @@ def plot_linear_with_fit(ax,x,y,m,b,equation,plot_label,x_label,y_label,x_min,x_
     linear_plot=ax.plot(x_values,curvefitfunctions.linear(x_values,m,b), label=equation)
     return linear_plot
     #TODO this needs to be more robust and actually return something...
+    #TODO how to set labels
 
 def plot_color_map(ax, data, plot_title, colormap, x_label, y_label, clb_label, min_val, max_val):
     if ax is None:
@@ -36,13 +37,12 @@ def plot_color_map(ax, data, plot_title, colormap, x_label, y_label, clb_label, 
     clb.set_label(clb_label, rotation=270, labelpad=20)
     im.set_clim(min_val,max_val)
     #TODO figure out how to return this
+    #TODO how to set labels
 
 def save_figure(plotlabel,figurepath, format_type):
     figbasename = plotlabel + '.' + format_type
     figfilepath = path.join(figurepath,figbasename)
     plt.savefig(figfilepath, format = format_type)
-    #TODO unfuck this so it's not always stuck as png
-
 
 
 

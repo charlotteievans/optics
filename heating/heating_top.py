@@ -2,7 +2,7 @@
 """
 Created on 2016-09-28
 
-Returns fit parameters for linear functions
+Top level programs used in main files
 
 @author: cie1
 """
@@ -19,8 +19,8 @@ import numpy as np
 from general import plots
 from general import fileutil
 
-def plot_single_heating_map(rtfilepath, gphotofilepath, figurepath, substrate_temperature, max_value_percent,
-                            format_type):
+def plot_single_heating_map(rtfilepath, gphotofilepath, figurepath, substrate_temperature, format_type, min_value,
+                            max_value, explicit_value_boolean):
     os.makedirs(figurepath, exist_ok=True)
     plotlabel = path.splitext(path.basename(gphotofilepath))[0]
     header, arrays = gphoto_reader.read(gphotofilepath)
@@ -28,13 +28,29 @@ def plot_single_heating_map(rtfilepath, gphotofilepath, figurepath, substrate_te
     dcurrent = conversions.rms_to_peak(arrays[0])
     dtemperature = heating_conversions.dcurrent_to_dtemperature(dcurrent, drdt, resistance, header["Applied Voltage"])
     fig, ax = plt.subplots()
-    min_val = np.amin(dtemperature)
-    max_val = np.sort(dtemperature, axis=None)[int(np.rint(max_value_percent * (np.size(dtemperature)-1)))]
-    heating_plots.plot_heating_map(ax, dtemperature, plotlabel, header, min_val, max_val)
+    if max_value<min_value:
+        print('max value must be larger than min value')
+        return
+    if explicit_value_boolean is False:
+        if max_value>1:
+            print('max value percentage must be a decimal less than or equal to 1')
+            return
+        min_value = np.sort(dtemperature, axis=None)[int(np.rint(min_value * (np.size(dtemperature) - 1)))]
+        max_value=np.sort(dtemperature, axis=None)[int(np.rint(max_value * (np.size(dtemperature) - 1)))]
+    heating_plots.plot_heating_map(ax, dtemperature, plotlabel, header, min_value, max_value)
     plots.save_figure(plotlabel, figurepath, format_type)
+    plt.close('all')
 
 
-def plot_all_heating_maps(rtfilepath, datapath, figurepath, substrate_temperature, max_value_percent, format_type):
+def plot_all_heating_maps(rtfilepath, datapath, figurepath, substrate_temperature, format_type, min_value, max_value,
+                          explicit_value_boolean):
+    if min_value>max_value:
+        print('Max value must be greater than min value')
+        return
+    if not explicit_value_boolean:
+        if max_value>1:
+            print('maximum percentage must be a decimal less than or equal to 1')
+            return
     drdt, resistance = resistance_and_drdt.get_drdt_and_resistance(rtfilepath, substrate_temperature)
     errors=[]
     zerobias=[]
@@ -48,9 +64,10 @@ def plot_all_heating_maps(rtfilepath, datapath, figurepath, substrate_temperatur
             dtemperature = heating_conversions.dcurrent_to_dtemperature(dcurrent, drdt, resistance,
                                                                         header["Applied Voltage"])
             fig, ax = plt.subplots()
-            min_val = np.amin(dtemperature)
-            max_val = np.sort(dtemperature, axis=None)[int(np.rint(max_value_percent * (np.size(dtemperature)-1)))]
-            heating_plots.plot_heating_map(ax, dtemperature, plotlabel, header, min_val, max_val)
+            if not explicit_value_boolean:
+                min_val=np.sort(dtemperature, axis=None)[int(np.rint(min_value * (np.size(dtemperature)-1)))]
+                max_val = np.sort(dtemperature, axis=None)[int(np.rint(max_value * (np.size(dtemperature)-1)))]
+            heating_plots.plot_heating_map(ax, dtemperature, plotlabel, header, min_value, max_value)
             plots.save_figure(plotlabel, figurepath, format_type)
             plt.close("all")
             if header['Applied Voltage'] == 0:

@@ -8,6 +8,7 @@ Plots gphoto raman data
 """
 
 from general import plots
+import math
 
 
 def plot_raman_map(ax, raman_array, plotlabel, header, min_val, max_val):

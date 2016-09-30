@@ -1,20 +1,11 @@
-# -*- coding: utf-8 -*-
-"""
-Created on 2016-09-29
+from gphoto import gphoto_raman_top
 
-Plots and saves a single heat map
-
-@author: cie1
-"""
-
-from heating import heating_top
 
 # CHANGE THESE VALUES
 
-rtfilepath='C:\\DOCUMENTS\\Projects\\Gratings\\Data\\2016\\Sept 21\\rvst.txt'
+
 gphotofilepath='C:\\DOCUMENTS\\Projects\\Gratings\\Data\\2016\\Sept 21\\Gphoto\\2_1_1.txt'
 figurepath='C:\\DOCUMENTS\\Projects\\Test'
-substrate_temperature=40.5
 format_type='png' #Supported formats: emf, eps, pdf, png, ps, raw, rgba, svg, svgz
 min_value=0
 max_value=1
@@ -29,5 +20,5 @@ supported_formats=['emf','eps','pdf','png','ps','raw','rgba','svg','svgz']
 if format_type not in supported_formats:
     print('Format type must be supported. Use ' + str(supported_formats))
 else:
-    heating_top.plot_single_heating_map(rtfilepath, gphotofilepath, figurepath, substrate_temperature,
-                                        format_type, min_value, max_value, explicit_value_boolean)
+    gphoto_raman_top.single_gphoto_raman_map(gphotofilepath, figurepath, format_type, min_value, max_value,
+                                             explicit_value_boolean)
