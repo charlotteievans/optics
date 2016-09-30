@@ -29,5 +29,7 @@ supported_formats=['emf','eps','pdf','png','ps','raw','rgba','svg','svgz']
 if format_type not in supported_formats:
     print('Format type must be supported. Use ' + str(supported_formats))
 else:
-    heating_top.plot_all_heating_maps(rtfilepath, datapath, figurepath, substrate_temperature, format_type, min_value, max_value,
-                          explicit_value_boolean)
+    errors, zerobias = heating_top.plot_all_heating_maps(rtfilepath, datapath, figurepath, substrate_temperature,
+                                                   format_type, min_value, max_value, explicit_value_boolean)
+    print('Errors: ' + str(errors))
+    print('Zero bias: ' + str(zerobias))

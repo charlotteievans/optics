@@ -64,9 +64,9 @@ def plot_all_heating_maps(rtfilepath, datapath, figurepath, substrate_temperatur
             dtemperature = heating_conversions.dcurrent_to_dtemperature(dcurrent, drdt, resistance,
                                                                         header["Applied Voltage"])
             fig, ax = plt.subplots()
-            if not explicit_value_boolean:
-                min_val=np.sort(dtemperature, axis=None)[int(np.rint(min_value * (np.size(dtemperature)-1)))]
-                max_val = np.sort(dtemperature, axis=None)[int(np.rint(max_value * (np.size(dtemperature)-1)))]
+            if max_value<=1: #TODO why is this janky
+                min_value=np.sort(dtemperature, axis=None)[int(np.rint(min_value * (np.size(dtemperature)-1)))]
+                max_value = np.sort(dtemperature, axis=None)[int(np.rint(max_value * (np.size(dtemperature)-1)))]
             heating_plots.plot_heating_map(ax, dtemperature, plotlabel, header, min_value, max_value)
             plots.save_figure(plotlabel, figurepath, format_type)
             plt.close("all")
