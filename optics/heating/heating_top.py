@@ -14,8 +14,8 @@ import matplotlib.pylab as plt
 import numpy as np
 from general import fileutil
 from general import plotting
-
 from heating import heating_plots
+
 from optics.general import conversions
 from optics.gphoto import gphoto_reader
 from optics.heating import heating_conversions, heating_plots
