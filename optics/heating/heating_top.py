@@ -7,17 +7,20 @@ Top level programs used in main files
 @author: cie1
 """
 
-from os import path
 import os
-from gphoto import gphoto_reader
-from resistance_vs_temperature import resistance_and_drdt
-from heating import heating_conversions
-from general import conversions
-from heating import heating_plots
+from os import path
+
 import matplotlib.pylab as plt
 import numpy as np
-from general import plotting
 from general import fileutil
+from general import plotting
+
+from heating import heating_plots
+from optics.general import conversions
+from optics.gphoto import gphoto_reader
+from optics.heating import heating_conversions, heating_plots
+from optics.resistance_vs_temperature import resistance_and_drdt
+
 
 def plot_single_heating_map(rtfilepath, gphotofilepath, figuredirectory, substrate_temperature, format_type, min_value,
                             max_value, explicit_value_boolean):
@@ -55,7 +58,7 @@ def plot_all_heating_maps(rtfilepath, datadirectory, figuredirectory, substrate_
     errors=[]
     zerobias=[]
     os.makedirs(figuredirectory, exist_ok=True)
-    datafiles=fileutil.return_only_text_no_raman(fileutil.listdir(datadirectory))
+    datafiles= fileutil.return_only_text_no_raman(fileutil.listdir(datadirectory))
     for datafile in datafiles:
         plotlabel = path.splitext(path.basename(datafile))[0]
         try:

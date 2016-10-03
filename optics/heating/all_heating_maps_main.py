@@ -6,7 +6,7 @@ Plots and saves all heating maps in a directory
 
 @author: cie1
 """
-from heating import heating_top
+from optics.heating import heating_top
 
 #CHANGE THESE VALUES
 

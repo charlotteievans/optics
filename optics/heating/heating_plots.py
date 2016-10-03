@@ -7,8 +7,9 @@ Creates heating map
 @author: cie1
 """
 
-from general import plotting
 import math
+
+from optics.general import plotting
 
 
 def plot_heating_map(ax, dtemperature,plotlabel,header,min_val,max_val):

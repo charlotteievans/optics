@@ -7,7 +7,7 @@ Plots and saves a single heat map
 @author: cie1
 """
 
-from heating import heating_top
+from optics.heating import heating_top
 
 # CHANGE THESE VALUES
 
