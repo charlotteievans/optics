@@ -7,6 +7,6 @@ destination_directory='C:\\DOCUMENTS\\Projects\\Gratings\\Data\\2016\\Sept 21\\G
 
 #Don't change this
 listedfiles= fileutil.listdir(directory)
-only_zip= fileutil.return_only_zip_files(listedfiles)
+only_zip= fileutil.list_only_zip_files(listedfiles)
 for item in only_zip:
     fileutil.unzip_file(item, destination_directory)

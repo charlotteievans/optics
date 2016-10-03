@@ -18,3 +18,4 @@ def fit_linear(x, M, B):
 
 def fit_cossquared(x, A, B, C):
     return A * (np.cos(x + B)) ** 2 + C
+
