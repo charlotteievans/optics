@@ -25,7 +25,7 @@ def plot_linear_with_fit(ax, x, y, m, b, equation, plot_label, x_label, y_label)
     ax.plot(x_values, curvefitfunctions.fit_linear(x_values, m, b), label=equation)
 
 
-def plot_colormap_trial(fig, ax, data, plot_title, colormap, x_label, y_label, clb_label, min_value, max_value):
+def plot_colormap(fig, ax, data, plot_title, colormap, x_label, y_label, clb_label, min_value, max_value):
     cax=ax.imshow(data, cmap=colormap, interpolation='none', vmin=min_value, vmax=max_value)
     clb=fig.colorbar(cax, orientation='vertical')
     ax.set_xlabel(x_label)

@@ -28,7 +28,7 @@ def plot_single_heating_map(rtfilepath, gphotofilepath, figuredirectory, substra
     plotlabel = path.splitext(path.basename(gphotofilepath))[0]
     header, arrays = gphoto_reader.read(gphotofilepath)
     drdt, resistance = resistance_and_drdt.get_drdt_and_resistance(rtfilepath, substrate_temperature)
-    dcurrent = conversions.rms_to_peak(arrays[0])
+    dcurrent = conversions.lockin_to_dc(arrays[0])
     dtemperature = heating_conversions.dcurrent_to_dtemperature(dcurrent, drdt, resistance, header["Applied Voltage"])
     fig, ax = plt.subplots()
     if max_value<min_value:
@@ -63,7 +63,7 @@ def plot_all_heating_maps(rtfilepath, datadirectory, figuredirectory, substrate_
         plotlabel = path.splitext(path.basename(datafile))[0]
         try:
             header, arrays = gphoto_reader.read(datafile)
-            dcurrent = conversions.rms_to_peak(arrays[0])
+            dcurrent = conversions.lockin_to_dc(arrays[0])
             dtemperature = heating_conversions.dcurrent_to_dtemperature(dcurrent, drdt, resistance,
                                                                         header["Applied Voltage"])
             fig, ax = plt.subplots()

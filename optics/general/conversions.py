@@ -26,7 +26,7 @@ def current_to_voltage(current, resistance):
     return current * resistance
 
 
-def rms_to_peak(rms):
+def lockin_to_dc(rms):
     #converts lock-in square wave to true signal
     return rms * 2.22
 
