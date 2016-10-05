@@ -37,3 +37,5 @@ def wavelength_to_wavenumber(wavelength):
 
 def find_nearest(array,value):
     return (np.abs(array-value)).argmin()
+
+###edits
